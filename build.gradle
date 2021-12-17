@@ -1,0 +1,90 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.ananthasharma.apps'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+
+	avroToolsCompile {
+		/** needed to compile avro schema to java classes **/
+		description = "To compile schema"
+		transitive = false
+	}
+}
+
+
+
+repositories {
+	mavenCentral()
+	maven{
+		url = "https://packages.confluent.io/maven/"
+	}
+}
+
+ext {
+	/** needed to compile avro schema to java classes **/
+	set('avroVersion', "1.8.2")
+	set('avroGeneratedSchemaLocation', "${buildDir}/generated/avro-schema")
+	set('confluentVersion', "5.2.0")
+
+
+	set('springCloudVersion', "2021.0.0")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	/** needed to use avro files to send receive messages in kafka **/
+	implementation "io.confluent:kafka-avro-serializer:${confluentVersion}"
+	implementation "io.confluent:kafka-streams-avro-serde:${confluentVersion}"
+
+	/** needed to compile avro schema to java classes **/
+	implementation "org.apache.avro:avro:${avroVersion}"
+	avroToolsCompile "org.apache.avro:avro-tools:${avroVersion}"
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+
+/** needed to compile avro schema to java classes **/
+task generateAvroSchema(type: JavaExec){
+	inputs.dir("src/main/resources/schema")
+	outputs.dir("${avroGeneratedSchemaLocation}")
+	main 'org.apache.avro.tool.Main'
+	classpath configurations.avroToolsCompile
+	args = ['compile', '-string', 'schema', "src/main/resources/schema/message-schema.avsc", "${avroGeneratedSchemaLocation}"]
+}
+
+compileJava {
+	dependsOn "generateAvroSchema"
+}
+
+sourceSets.main.java.srcDirs += ["${avroGeneratedSchemaLocation}"]

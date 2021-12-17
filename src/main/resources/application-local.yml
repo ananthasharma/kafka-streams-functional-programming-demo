@@ -1,0 +1,5 @@
+spring.kafka.properties:
+  bootstrap.servers: localhost:9092
+  ssl.endpoint.identification.algorithm: https
+  security.protocol: SASL_SSL
+  sasl.mechanism: PLAIN

@@ -1,0 +1,52 @@
+log4j:WARN No appenders could be found for logger (AvroVelocityLogChute).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+
+08:05:36,827 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+08:05:36,827 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+08:05:36,828 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/Users/asharma/projects/java/kafka-streams-functional-programming-demo/build/resources/main/logback.xml]
+08:05:36,982 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+08:05:36,987 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+08:05:36,995 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+08:05:37,021 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [com.ananthasharma] to DEBUG
+08:05:37,021 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [com.ananthasharma] to false
+08:05:37,022 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[com.ananthasharma]
+08:05:37,022 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to ERROR
+08:05:37,022 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
+08:05:37,022 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+08:05:37,023 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@184f6be2 - Registering current configuration as safe fallback point
+08:05:37,578 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+08:05:37,578 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+08:05:37,578 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+08:05:37,579 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [com.ananthasharma] to DEBUG
+08:05:37,579 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@4ddbbdf8 - Propagating DEBUG level on Logger[com.ananthasharma] onto the JUL framework
+08:05:37,580 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [com.ananthasharma] to false
+08:05:37,580 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[com.ananthasharma]
+08:05:37,580 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to ERROR
+08:05:37,580 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@4ddbbdf8 - Propagating ERROR level on Logger[ROOT] onto the JUL framework
+08:05:37,580 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
+08:05:37,580 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+08:05:37,580 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@82ea68c - Registering current configuration as safe fallback point
+08:05:37,586 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@4ddbbdf8 - Propagating ERROR level on Logger[kafka.server.KafkaConfig] onto the JUL framework
+08:05:37,586 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@4ddbbdf8 - Propagating ERROR level on Logger[org.I0Itec.zkclient] onto the JUL framework
+08:05:37,586 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@4ddbbdf8 - Propagating ERROR level on Logger[kafka.admin.AdminClient.AdminConfig] onto the JUL framework
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.1)
+
+08:05:37.679 [main] INFO  c.a.a.d.c.w.DemoCloudStreamingWithKafkaApplication - Starting DemoCloudStreamingWithKafkaApplication using Java 17 on Not-an-iPhone-or-iPad with PID 18714 (/Users/asharma/projects/java/kafka-streams-functional-programming-demo/build/classes/java/main started by asharma in /Users/asharma/projects/java/cloud-stream-kafka)
+08:05:37.680 [main] DEBUG c.a.a.d.c.w.DemoCloudStreamingWithKafkaApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+08:05:37.681 [main] INFO  c.a.a.d.c.w.DemoCloudStreamingWithKafkaApplication - The following profiles are active: cloud
+08:05:40.151 [main] INFO  c.a.a.d.c.w.s.AbstractProcessorFunction - bean initialized com.ananthasharma.apps.demo.cloudstreaming.with_kafka.stream_functions.MessageConsumerNotificationFunction
+08:05:40.153 [main] INFO  c.a.a.d.c.w.s.AbstractProcessorFunction - bean initialized com.ananthasharma.apps.demo.cloudstreaming.with_kafka.stream_functions.MessageProcessorFunction
+08:05:40.154 [main] INFO  c.a.a.d.c.w.s.AbstractProcessorFunction - bean initialized com.ananthasharma.apps.demo.cloudstreaming.with_kafka.stream_functions.MessageProducerFunction
+08:05:40.154 [main] INFO  c.a.a.d.c.w.s.MessageProducerFunction - sendDummyMessages is set to false
+08:05:51.856 [main] INFO  c.a.a.d.c.w.DemoCloudStreamingWithKafkaApplication - Started DemoCloudStreamingWithKafkaApplication in 14.706 seconds (JVM running for 15.266)
+08:05:53.575 [http-nio-8080-exec-1] INFO  c.a.a.d.c.w.e.SendMoneyRequestEndpoint - sending message, {"amount": 1650.43, "sourceWallet": 2852246966764253255, "destWallet": -7250960225558339183, "currency": "USD"}
+08:05:57.407 [KafkaConsumerDestination{consumerDestinationName='source-topic', partitions=1, dlqName='null'}.container-0-C-1] INFO  c.a.a.d.c.w.s.MessageProcessorFunction - Got money transfer request with Id c230e079-e07d-410b-8ae6-7d5330fd7bbf
+08:05:58.383 [KafkaConsumerDestination{consumerDestinationName='processed-topic', partitions=1, dlqName='null'}.container-0-C-1] INFO  c.a.a.d.c.w.s.MessageConsumerNotificationFunction - Got money transfer request with Id c230e079-e07d-410b-8ae6-7d5330fd7bbf

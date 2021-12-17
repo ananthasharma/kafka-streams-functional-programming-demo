@@ -1,0 +1,61 @@
+spring.kafka.streams.application-id: Demo-App-to-show-stream-processing-using-spring
+
+kafka.config:
+  source-topic-name: source-topic
+  processed-topic-name: processed-topic
+  sink-topic-name: sink-topic
+
+spring:
+  cloud:
+    stream:
+      function:
+        # method names which are to be configured
+        # for simplicity I've created separate classes to house these methods, you can place them all in one place if needed
+        definition: produceMessage;processMessage;consumeMessageAndNotify
+      bindings:
+        # the input/output bindings for those methods and topic names
+        produceMessage-out-0:
+          destination: ${kafka.config.source-topic-name}
+          content-type: application/**avsc # this config is useful when dealing with avro message types
+        processMessage-in-0:
+          destination: ${kafka.config.source-topic-name}
+          content-type: application/**avsc
+        processMessage-out-0:
+          destination: ${kafka.config.processed-topic-name}
+          content-type: application/**avsc
+        consumeMessageAndNotify-in-0:
+          destination: ${kafka.config.processed-topic-name}
+          content-type: application/**avsc
+        consumeMessageAndNotify-out-0:
+          destination: ${kafka.config.sink-topic-name}
+          content-type: application/**avsc
+      kafka:
+        binder:
+          auto-create-topics: true
+  kafka:
+    producer:
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # the error handler deserializer manages to side step messages which coundlt get converted
+      # (preventing the app going into a loop trying to process the same message over and over)
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        specific.avro.reader: true
+    properties:
+      # Delegate deserializers
+      # these are the actual deserializers which will do all the work, the ErrorHandlingDeserializer manages exception handling when there is trouble
+      spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+      spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+management:
+  endpoint:
+    health:
+      # this should be setup only for lower envs, higher ens should have this either disabled or set to "when_authorized" for security
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        # to track how the application is performing and what endpoints are available
+        include: health,info,bindings

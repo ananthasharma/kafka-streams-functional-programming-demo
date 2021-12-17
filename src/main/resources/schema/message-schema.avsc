@@ -1,0 +1,42 @@
+[
+    {
+        "namespace": "com.ananthasharma.demo.schema.io",
+        "type": "enum",
+        "name": "MessageSource",
+        "symbols": [
+            "Mobile",
+            "Web",
+            "API"
+        ]
+    },
+    {
+        "doc": "stores money send request data",
+        "namespace": "com.ananthasharma.demo.schema.io",
+        "type": "record",
+        "name": "SendMoneyRequest",
+        "fields": [
+            {
+                "doc": "amount of money to be sent",
+                "name": "amount",
+                "type": "double",
+                "default": "0.0"
+            },
+            {
+                "doc": "sender wallet reference",
+                "name": "sourceWallet",
+                "type": "long"
+            },
+            {
+                "doc": "reciever wallet reference",
+                "name": "destWallet",
+                "type": "long"
+            },
+            {
+                "doc": "currency the amount is in",
+                "name": "currency",
+                "type": "string",
+                "default": "USD"
+            }
+        ]
+    }
+]
